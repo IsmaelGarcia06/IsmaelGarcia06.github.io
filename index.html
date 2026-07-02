@@ -1,0 +1,776 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ismael García Camacho | Desarrollador Web · Isla Cristina</title>
+  <meta name="description" content="Desarrollador web junior con experiencia en Java, PHP, JS, Python, HTML, CSS, SQL. Isla Cristina, Andalucía. Disponible para nuevas oportunidades.">
+  <meta property="og:title" content="Ismael García Camacho | Desarrollador Web · Isla Cristina">
+  <meta property="og:description" content="Desarrollador web junior con pasión por la tecnología y la innovación. Java · PHP · JS · Python · HTML · CSS · SQL.">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Exo+2:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --sky: #4ab8f5;
+      --sky-light: #a8ddf9;
+      --sky-dark: #1a7bc0;
+      --sky-deep: #0a4f8a;
+      --green: #5fd87a;
+      --green-light: #b2f0be;
+      --green-dark: #2a9e47;
+      --white: #ffffff;
+      --glass-bg: rgba(255,255,255,0.28);
+      --glass-border: rgba(255,255,255,0.6);
+      --glass-shadow: rgba(30,130,200,0.18);
+      --text-dark: #0d2a45;
+      --text-mid: #1e4f7a;
+      --text-light: #3a7ab5;
+      --card-inner: rgba(255,255,255,0.45);
+      --font-display: 'Exo 2', sans-serif;
+      --font-body: 'Nunito', sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-body);
+      background: linear-gradient(160deg, #c8eaff 0%, #b0d8f5 18%, #d4f3e8 40%, #a0dff5 65%, #baeaff 85%, #d0f4e4 100%);
+      min-height: 100vh;
+      color: var(--text-dark);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* Frutiger Aero background bubbles */
+    body::before {
+      content: '';
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background:
+        radial-gradient(ellipse 420px 320px at 12% 20%, rgba(255,255,255,0.45) 0%, transparent 70%),
+        radial-gradient(ellipse 300px 400px at 85% 10%, rgba(100,220,255,0.3) 0%, transparent 70%),
+        radial-gradient(ellipse 500px 250px at 50% 85%, rgba(120,240,180,0.25) 0%, transparent 70%),
+        radial-gradient(ellipse 200px 200px at 5% 75%, rgba(255,255,255,0.35) 0%, transparent 70%),
+        radial-gradient(ellipse 350px 200px at 95% 60%, rgba(150,210,255,0.28) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body > * { position: relative; z-index: 1; }
+
+    /* Glass mixin */
+    .glass {
+      background: var(--glass-bg);
+      backdrop-filter: blur(18px) saturate(1.6);
+      -webkit-backdrop-filter: blur(18px) saturate(1.6);
+      border: 1.5px solid var(--glass-border);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px var(--glass-shadow), inset 0 1.5px 0 rgba(255,255,255,0.75);
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed; top: 16px; left: 50%; transform: translateX(-50%);
+      z-index: 100; width: calc(100% - 40px); max-width: 900px;
+      background: rgba(255,255,255,0.5);
+      backdrop-filter: blur(24px) saturate(1.8);
+      -webkit-backdrop-filter: blur(24px) saturate(1.8);
+      border: 1.5px solid rgba(255,255,255,0.8);
+      border-radius: 50px;
+      box-shadow: 0 4px 24px rgba(30,130,200,0.15), inset 0 1px 0 rgba(255,255,255,0.9);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 10px 24px;
+    }
+
+    .nav-logo {
+      font-family: var(--font-display);
+      font-weight: 800; font-size: 16px;
+      color: var(--sky-dark);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+
+    .nav-logo span { color: var(--green-dark); }
+
+    nav ul { list-style: none; display: flex; gap: 6px; }
+
+    nav ul li a {
+      text-decoration: none;
+      color: var(--text-mid);
+      font-size: 13.5px; font-weight: 600;
+      padding: 6px 14px; border-radius: 50px;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    nav ul li a:hover {
+      background: rgba(74, 184, 245, 0.18);
+      color: var(--sky-dark);
+    }
+
+    /* ─── HERO ─── */
+    #hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 100px 24px 60px;
+    }
+
+    .hero-bubble {
+      width: 130px; height: 130px; border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, rgba(255,255,255,0.85) 0%, rgba(180,225,255,0.6) 50%, rgba(100,190,245,0.4) 100%);
+      border: 3px solid rgba(255,255,255,0.9);
+      box-shadow: 0 8px 32px rgba(30,130,200,0.25), inset 0 -4px 12px rgba(100,190,245,0.3), inset 0 4px 8px rgba(255,255,255,0.8);
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--font-display); font-weight: 800; font-size: 42px;
+      color: var(--sky-dark); margin: 0 auto 28px;
+      animation: float 5s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, rgba(255,255,255,0.7) 0%, rgba(200,240,255,0.7) 100%);
+      border: 1.5px solid rgba(255,255,255,0.8);
+      border-radius: 50px; padding: 6px 18px; margin-bottom: 18px;
+      font-size: 13px; font-weight: 700; color: var(--sky-dark); letter-spacing: 0.5px;
+      box-shadow: 0 2px 12px rgba(30,130,200,0.12);
+    }
+
+    .hero h1 {
+      font-family: var(--font-display);
+      font-size: clamp(38px, 7vw, 72px);
+      font-weight: 900;
+      color: var(--text-dark);
+      line-height: 1.05;
+      margin-bottom: 14px;
+      text-shadow: 0 2px 20px rgba(255,255,255,0.7);
+      letter-spacing: -1px;
+    }
+
+    .hero h1 .accent { color: var(--sky-dark); }
+
+    .hero-sub {
+      font-size: clamp(16px, 2.5vw, 22px);
+      color: var(--text-mid);
+      font-weight: 600; margin-bottom: 10px;
+    }
+
+    .hero-tags {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      justify-content: center; margin: 20px 0 34px;
+    }
+
+    .tag {
+      background: rgba(255,255,255,0.55);
+      border: 1.5px solid rgba(255,255,255,0.85);
+      border-radius: 50px; padding: 5px 14px;
+      font-size: 13px; font-weight: 700;
+      color: var(--text-mid);
+      box-shadow: 0 2px 8px rgba(30,130,200,0.1), inset 0 1px 0 rgba(255,255,255,0.9);
+    }
+
+    .tag:hover { background: rgba(74,184,245,0.2); color: var(--sky-dark); }
+
+    .hero-btns { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #4ab8f5 0%, #1a7bc0 100%);
+      color: #fff; border: none; border-radius: 50px;
+      padding: 13px 32px; font-size: 15px; font-weight: 700;
+      font-family: var(--font-body);
+      cursor: pointer; text-decoration: none; display: inline-block;
+      box-shadow: 0 4px 18px rgba(26,123,192,0.35), inset 0 1px 0 rgba(255,255,255,0.4);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(26,123,192,0.45), inset 0 1px 0 rgba(255,255,255,0.4); }
+
+    .btn-secondary {
+      background: rgba(255,255,255,0.55);
+      color: var(--sky-dark); border: 2px solid rgba(74,184,245,0.5);
+      border-radius: 50px; padding: 12px 32px; font-size: 15px; font-weight: 700;
+      font-family: var(--font-body);
+      cursor: pointer; text-decoration: none; display: inline-block;
+      backdrop-filter: blur(8px);
+      transition: transform 0.15s, background 0.15s;
+    }
+
+    .btn-secondary:hover { transform: translateY(-2px); background: rgba(74,184,245,0.18); }
+
+    /* ─── SECTIONS ─── */
+    section { padding: 80px 24px; max-width: 960px; margin: 0 auto; }
+
+    .section-label {
+      font-size: 12px; font-weight: 800; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--sky-dark); margin-bottom: 10px;
+      display: flex; align-items: center; gap: 10px;
+    }
+
+    .section-label::after {
+      content: ''; flex: 1; height: 1.5px;
+      background: linear-gradient(to right, rgba(74,184,245,0.5), transparent);
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: clamp(26px, 4vw, 42px);
+      font-weight: 800; color: var(--text-dark); margin-bottom: 40px;
+      letter-spacing: -0.5px;
+    }
+
+    /* ─── EXPERIENCIA ─── */
+    .timeline { display: flex; flex-direction: column; gap: 18px; }
+
+    .timeline-item {
+      background: rgba(255,255,255,0.4);
+      backdrop-filter: blur(16px) saturate(1.5);
+      -webkit-backdrop-filter: blur(16px) saturate(1.5);
+      border: 1.5px solid rgba(255,255,255,0.75);
+      border-radius: 18px;
+      padding: 22px 26px;
+      box-shadow: 0 4px 20px rgba(30,130,200,0.1), inset 0 1px 0 rgba(255,255,255,0.8);
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative; overflow: hidden;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute; top: 0; left: 0; width: 4px; height: 100%;
+      background: linear-gradient(to bottom, #4ab8f5, #5fd87a);
+      border-radius: 18px 0 0 18px;
+    }
+
+    .timeline-item:hover { transform: translateY(-3px); box-shadow: 0 10px 35px rgba(30,130,200,0.18), inset 0 1px 0 rgba(255,255,255,0.8); }
+
+    .tl-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 8px; margin-bottom: 6px; }
+
+    .tl-role { font-family: var(--font-display); font-size: 17px; font-weight: 700; color: var(--text-dark); }
+
+    .tl-period {
+      font-size: 12px; font-weight: 700; color: var(--sky-dark);
+      background: rgba(74,184,245,0.15); border: 1px solid rgba(74,184,245,0.3);
+      border-radius: 50px; padding: 3px 11px;
+    }
+
+    .tl-company { font-size: 14px; font-weight: 600; color: var(--text-light); margin-bottom: 10px; }
+
+    .tl-desc { font-size: 14px; color: var(--text-mid); line-height: 1.65; margin-bottom: 12px; }
+
+    .tl-tags { display: flex; flex-wrap: wrap; gap: 7px; }
+
+    .tl-tag {
+      background: rgba(255,255,255,0.7); border: 1px solid rgba(74,184,245,0.35);
+      border-radius: 50px; padding: 3px 10px; font-size: 12px; font-weight: 700;
+      color: var(--sky-dark);
+    }
+
+    /* ─── SKILLS ─── */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; }
+
+    .skill-card {
+      background: rgba(255,255,255,0.45);
+      backdrop-filter: blur(16px) saturate(1.5);
+      -webkit-backdrop-filter: blur(16px) saturate(1.5);
+      border: 1.5px solid rgba(255,255,255,0.8);
+      border-radius: 18px; padding: 20px 20px 18px;
+      box-shadow: 0 4px 18px rgba(30,130,200,0.1), inset 0 1px 0 rgba(255,255,255,0.85);
+      transition: transform 0.2s;
+    }
+
+    .skill-card:hover { transform: translateY(-4px); }
+
+    .skill-icon {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: linear-gradient(135deg, #a8ddf9 0%, #5fd87a 100%);
+      border: 2px solid rgba(255,255,255,0.9);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; margin-bottom: 12px;
+      box-shadow: 0 3px 12px rgba(30,130,200,0.2);
+    }
+
+    .skill-name { font-family: var(--font-display); font-weight: 700; font-size: 14px; color: var(--text-dark); margin-bottom: 6px; }
+
+    .skill-bar-bg {
+      height: 8px; background: rgba(74,184,245,0.15);
+      border-radius: 50px; overflow: hidden; margin-bottom: 4px;
+      border: 1px solid rgba(74,184,245,0.2);
+    }
+
+    .skill-bar {
+      height: 100%;
+      background: linear-gradient(to right, #4ab8f5, #5fd87a);
+      border-radius: 50px;
+      transition: width 1.2s ease;
+    }
+
+    .skill-pct { font-size: 12px; font-weight: 700; color: var(--text-light); text-align: right; }
+
+    /* ─── PROYECTOS ─── */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+
+    .project-card {
+      background: rgba(255,255,255,0.42);
+      backdrop-filter: blur(18px) saturate(1.6);
+      -webkit-backdrop-filter: blur(18px) saturate(1.6);
+      border: 1.5px solid rgba(255,255,255,0.8);
+      border-radius: 20px; padding: 24px;
+      box-shadow: 0 6px 24px rgba(30,130,200,0.12), inset 0 1.5px 0 rgba(255,255,255,0.85);
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: flex; flex-direction: column;
+    }
+
+    .project-card:hover { transform: translateY(-5px); box-shadow: 0 14px 40px rgba(30,130,200,0.2), inset 0 1.5px 0 rgba(255,255,255,0.85); }
+
+    .project-emoji {
+      font-size: 32px; margin-bottom: 14px;
+      width: 56px; height: 56px; border-radius: 14px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(168,221,249,0.6) 100%);
+      border: 1.5px solid rgba(255,255,255,0.9);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 3px 12px rgba(30,130,200,0.12);
+    }
+
+    .project-title { font-family: var(--font-display); font-size: 18px; font-weight: 800; color: var(--text-dark); margin-bottom: 8px; }
+
+    .project-desc { font-size: 14px; color: var(--text-mid); line-height: 1.65; flex: 1; margin-bottom: 16px; }
+
+    .project-link {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: linear-gradient(135deg, #4ab8f5 0%, #1a7bc0 100%);
+      color: #fff; text-decoration: none; border-radius: 50px;
+      padding: 8px 18px; font-size: 13px; font-weight: 700;
+      box-shadow: 0 3px 12px rgba(26,123,192,0.3);
+      transition: transform 0.15s;
+      align-self: flex-start;
+    }
+
+    .project-link:hover { transform: translateY(-2px); }
+
+    /* ─── SOBRE MÍ ─── */
+    .about-wrap {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 28px; align-items: start;
+    }
+
+    @media (max-width: 660px) { .about-wrap { grid-template-columns: 1fr; } }
+
+    .about-text {
+      background: rgba(255,255,255,0.42);
+      backdrop-filter: blur(18px) saturate(1.5);
+      -webkit-backdrop-filter: blur(18px) saturate(1.5);
+      border: 1.5px solid rgba(255,255,255,0.8);
+      border-radius: 20px; padding: 28px;
+      box-shadow: 0 6px 24px rgba(30,130,200,0.1), inset 0 1.5px 0 rgba(255,255,255,0.85);
+      font-size: 15px; color: var(--text-mid); line-height: 1.75;
+    }
+
+    .about-text strong { color: var(--text-dark); }
+
+    .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+    .stat-card {
+      background: rgba(255,255,255,0.5);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1.5px solid rgba(255,255,255,0.85);
+      border-radius: 16px; padding: 18px 16px; text-align: center;
+      box-shadow: 0 4px 16px rgba(30,130,200,0.1), inset 0 1px 0 rgba(255,255,255,0.9);
+    }
+
+    .stat-num { font-family: var(--font-display); font-size: 32px; font-weight: 900; color: var(--sky-dark); line-height: 1; }
+
+    .stat-label { font-size: 12px; font-weight: 700; color: var(--text-light); margin-top: 5px; letter-spacing: 0.3px; }
+
+    /* ─── EDUCACIÓN ─── */
+    .edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 18px; }
+
+    .edu-card {
+      background: rgba(255,255,255,0.42);
+      backdrop-filter: blur(16px) saturate(1.5);
+      -webkit-backdrop-filter: blur(16px) saturate(1.5);
+      border: 1.5px solid rgba(255,255,255,0.78);
+      border-radius: 18px; padding: 22px;
+      box-shadow: 0 4px 18px rgba(30,130,200,0.1), inset 0 1.5px 0 rgba(255,255,255,0.85);
+      transition: transform 0.2s;
+      position: relative; overflow: hidden;
+    }
+
+    .edu-card::after {
+      content: '';
+      position: absolute; bottom: -20px; right: -20px;
+      width: 80px; height: 80px; border-radius: 50%;
+      background: radial-gradient(circle, rgba(95,216,122,0.2) 0%, transparent 70%);
+    }
+
+    .edu-card:hover { transform: translateY(-3px); }
+
+    .edu-icon {
+      width: 42px; height: 42px; border-radius: 12px;
+      background: linear-gradient(135deg, #a8ddf9 0%, #b2f0be 100%);
+      border: 1.5px solid rgba(255,255,255,0.9);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; margin-bottom: 14px;
+    }
+
+    .edu-title { font-family: var(--font-display); font-size: 15px; font-weight: 800; color: var(--text-dark); margin-bottom: 4px; }
+    .edu-center { font-size: 13px; font-weight: 600; color: var(--sky-dark); margin-bottom: 4px; }
+    .edu-period { font-size: 12px; color: var(--text-light); }
+    .edu-nota { font-size: 12px; color: var(--green-dark); font-weight: 700; margin-top: 6px; }
+
+    /* ─── CONTACTO ─── */
+    #contacto {
+      background: rgba(255,255,255,0.35);
+      backdrop-filter: blur(20px) saturate(1.7);
+      -webkit-backdrop-filter: blur(20px) saturate(1.7);
+      border-top: 1.5px solid rgba(255,255,255,0.65);
+      border-bottom: 1.5px solid rgba(255,255,255,0.65);
+      text-align: center;
+      padding: 80px 24px;
+    }
+
+    .contact-cards { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; margin-top: 36px; }
+
+    .contact-card {
+      background: rgba(255,255,255,0.55);
+      border: 1.5px solid rgba(255,255,255,0.85);
+      border-radius: 18px; padding: 18px 28px;
+      box-shadow: 0 4px 18px rgba(30,130,200,0.12), inset 0 1px 0 rgba(255,255,255,0.9);
+      text-decoration: none; color: var(--text-dark);
+      display: flex; align-items: center; gap: 12px;
+      font-weight: 700; font-size: 14px;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .contact-card:hover { transform: translateY(-3px); box-shadow: 0 10px 30px rgba(30,130,200,0.2); }
+
+    .contact-icon {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: linear-gradient(135deg, #4ab8f5 0%, #1a7bc0 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; color: #fff;
+      box-shadow: 0 2px 10px rgba(26,123,192,0.3);
+    }
+
+    /* ─── FOOTER ─── */
+    footer {
+      text-align: center; padding: 28px 24px;
+      font-size: 13px; color: var(--text-light); font-weight: 600;
+    }
+
+    /* ─── DIVIDERS ─── */
+    .divider {
+      height: 1.5px;
+      background: linear-gradient(to right, transparent, rgba(74,184,245,0.4), rgba(95,216,122,0.4), transparent);
+      max-width: 960px; margin: 0 auto;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 640px) {
+      nav ul { display: none; }
+      .hero h1 { font-size: 38px; }
+      .about-stats { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ─── SCROLL REVEAL ─── */
+    .reveal {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero">&lt;ismael<span>.dev</span> /&gt;</a>
+  <ul>
+    <li><a href="#experiencia">Experiencia</a></li>
+    <li><a href="#habilidades">Habilidades</a></li>
+    <li><a href="#proyectos">Proyectos</a></li>
+    <li><a href="#sobre-mi">Sobre mí</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+    <li><a href="https://www.linkedin.com/in/ismael-garc%C3%ADa-camacho-9a0365352/" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero" class="hero">
+  <div class="hero-bubble">IG</div>
+  <div class="hero-badge">🌐 Desarrollador Web · Isla Cristina, Andalucía</div>
+  <h1>Ismael <span class="accent">García</span><br>Camacho</h1>
+  <p class="hero-sub">Desarrollador Web & Aplicaciones · 24 años</p>
+  <div class="hero-tags">
+    <span class="tag">Java</span>
+    <span class="tag">PHP</span>
+    <span class="tag">JavaScript</span>
+    <span class="tag">Python</span>
+    <span class="tag">HTML · CSS</span>
+    <span class="tag">SQL · PL/SQL</span>
+    <span class="tag">Git</span>
+    <span class="tag">Google Cloud</span>
+  </div>
+  <div class="hero-btns">
+    <a href="#proyectos" class="btn-primary">Ver Proyectos</a>
+    <a href="#contacto" class="btn-secondary">Contactar</a>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCIA -->
+<section id="experiencia">
+  <p class="section-label">// experiencia</p>
+  <h2 class="section-title">Trayectoria Profesional</h2>
+  <div class="timeline">
+
+    <div class="timeline-item reveal">
+      <div class="tl-header">
+        <span class="tl-role">Desarrollador de Aplicaciones Web</span>
+        <span class="tl-period">feb. 2026 — abr. 2026 · 3 meses</span>
+      </div>
+      <p class="tl-company">rexWaher · Jornada completa · Huelva, Andalucía · Híbrido</p>
+      <p class="tl-desc">Desarrollo de aplicaciones web y trabajo con Google Cloud. Participación en proyectos de cliente con tecnologías modernas de frontend y backend.</p>
+      <div class="tl-tags">
+        <span class="tl-tag">Desarrollo Web</span>
+        <span class="tl-tag">Google Cloud</span>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="tl-header">
+        <span class="tl-role">Desarrollador de Java y Web</span>
+        <span class="tl-period">feb. 2024 — mar. 2025 · varios periodos</span>
+      </div>
+      <p class="tl-company">Ayuntamiento de Isla Cristina · Contrato de prácticas · Presencial</p>
+      <p class="tl-desc">Desarrollo de aplicaciones con Java y tecnologías web (HTML5) en el marco de prácticas formativas. Trabajo en proyectos institucionales con metodologías de programación orientada a objetos.</p>
+      <div class="tl-tags">
+        <span class="tl-tag">Java</span>
+        <span class="tl-tag">HTML5</span>
+      </div>
+    </div>
+
+    <div class="timeline-item reveal">
+      <div class="tl-header">
+        <span class="tl-role">Ayudante de Cocina (trabajos de temporada)</span>
+        <span class="tl-period">2020 — 2025 · varios periodos</span>
+      </div>
+      <p class="tl-company">Burguer Fipy · Jornada completa · Isla Cristina, Andalucía · Presencial</p>
+      <p class="tl-desc">Experiencia laboral en hostelería durante los veranos a lo largo de los años de formación técnica, compaginando el trabajo con los estudios de informática.</p>
+      <div class="tl-tags">
+        <span class="tl-tag">Trabajo en equipo</span>
+        <span class="tl-tag">Atención al cliente</span>
+        <span class="tl-tag">Polivalencia</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- HABILIDADES -->
+<section id="habilidades">
+  <p class="section-label">// habilidades</p>
+  <h2 class="section-title">Stack Tecnológico</h2>
+  <div class="skills-grid">
+
+    <div class="skill-card reveal">
+      <div class="skill-icon">☕</div>
+      <div class="skill-name">Java</div>
+      <div class="skill-bar-bg"><div class="skill-bar" data-w="80" style="width:0%"></div></div>
+    </div>
+
+    <div class="skill-card reveal">
+      <div class="skill-icon">🐘</div>
+      <div class="skill-name">PHP</div>
+      <div class="skill-bar-bg"><div class="skill-bar" data-w="70" style="width:0%"></div></div>
+    </div>
+
+    <div class="skill-card reveal">
+      <div class="skill-icon">🟨</div>
+      <div class="skill-name">JavaScript</div>
+      <div class="skill-bar-bg"><div class="skill-bar" data-w="72" style="width:0%"></div></div>
+    </div>
+
+    <div class="skill-card reveal">
+      <div class="skill-icon">🐍</div>
+      <div class="skill-name">Python</div>
+      <div class="skill-bar-bg"><div class="skill-bar" data-w="68" style="width:0%"></div></div>
+    </div>
+
+    <div class="skill-card reveal">
+      <div class="skill-icon">🌐</div>
+      <div class="skill-name">HTML · CSS</div>
+      <div class="skill-bar-bg"><div class="skill-bar" data-w="82" style="width:0%"></div></div>
+    </div>
+
+    <div class="skill-card reveal">
+      <div class="skill-icon">🗄️</div>
+      <div class="skill-name">SQL · PL/SQL</div>
+      <div class="skill-bar-bg"><div class="skill-bar" data-w="74" style="width:0%"></div></div>
+    </div>
+
+    <div class="skill-card reveal">
+      <div class="skill-icon">☁️</div>
+      <div class="skill-name">Google Cloud</div>
+      <div class="skill-bar-bg"><div class="skill-bar" data-w="60" style="width:0%"></div></div>
+    </div>
+
+    <div class="skill-card reveal">
+      <div class="skill-icon">🔀</div>
+      <div class="skill-name">Git · GitHub</div>
+      <div class="skill-bar-bg"><div class="skill-bar" data-w="75" style="width:0%"></div></div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROYECTOS -->
+<section id="proyectos">
+  <p class="section-label">// proyectos</p>
+  <h2 class="section-title">Proyectos Destacados</h2>
+  <div class="projects-grid">
+
+    <div class="project-card reveal">
+      <div class="project-emoji">🎮</div>
+      <h3 class="project-title">WikiLOL</h3>
+      <p class="project-desc">Aplicación web tipo wiki dedicada al videojuego League of Legends. Consulta de campeones, estadísticas e información del universo LoL con integración de datos en tiempo real.</p>
+      <div class="tl-tags" style="margin-bottom:16px">
+        <span class="tl-tag">HTML</span>
+        <span class="tl-tag">CSS</span>
+        <span class="tl-tag">JavaScript</span>
+        <span class="tl-tag">API</span>
+      </div>
+      <a href="https://github.com/IsmaelGarcia06/WikiLOL" target="_blank" rel="noopener" class="project-link">Ver en GitHub →</a>
+    </div>
+
+    <div class="project-card reveal">
+      <div class="project-emoji">🎓</div>
+      <h3 class="project-title">TFG Final</h3>
+      <p class="project-desc">Trabajo de Fin de Grado del Ciclo Superior DAM. Proyecto de desarrollo de aplicaciones multiplataforma que engloba los conocimientos adquiridos durante la formación.</p>
+      <div class="tl-tags" style="margin-bottom:16px">
+        <span class="tl-tag">Java</span>
+        <span class="tl-tag">SQL</span>
+        <span class="tl-tag">Multiplataforma</span>
+      </div>
+      <a href="https://github.com/IsmaelGarcia06/tfg_final" target="_blank" rel="noopener" class="project-link">Ver en GitHub →</a>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EDUCACIÓN -->
+<section id="educacion">
+  <p class="section-label">// formación</p>
+  <h2 class="section-title">Formación Académica</h2>
+  <div class="edu-grid">
+
+    <div class="edu-card reveal">
+      <div class="edu-icon">🎓</div>
+      <div class="edu-title">Desarrollo de Aplicaciones Multiplataforma (DAM)</div>
+      <div class="edu-center">I.E.S La Marisma</div>
+      <div class="edu-period">sept. 2024 — jun. 2026</div>
+      <div class="edu-nota"> Ciclo Formativo de Grado Superior</div>
+    </div>
+
+    <div class="edu-card reveal">
+      <div class="edu-icon">💻</div>
+      <div class="edu-title">Sistemas Microinformáticos y Redes (SMR)</div>
+      <div class="edu-center">I.E.S. Padre José Miravent</div>
+      <div class="edu-period">sept. 2021 — jun. 2023</div>
+      <div class="edu-nota">Ciclo Formativo de Grado Medio</div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- SOBRE MÍ -->
+<section id="sobre-mi">
+  <p class="section-label">// sobre mí</p>
+  <h2 class="section-title">Sobre Mí</h2>
+  <div class="about-wrap">
+    <div class="about-text reveal">
+      <p>Mi nombre es <strong>Ismael</strong>, tengo <strong>24 años</strong> y actualmente estoy en <strong>búsqueda activa de empleo</strong>. Desde crio he estado en contacto con los ordenadores desde mi primer servidor de minecraft hasta ahora el terminar mi ciclo formativo de grado superior la informatica es algo que me motiva y me encanta descubrir todo lo que soy capaz de hacer ahora.</p>
+      <br>
+      <p>Me formé en <strong>Sistemas Microinformáticos y Redes</strong> y actualmente finalizo el <strong>Ciclo Superior de DAM</strong> en I.E.S La Marisma. Cuento con experiencia práctica en <strong>Java, PHP, JavaScript, Python, HTML/CSS y SQL</strong>, y he podido aplicar estos conocimientos tanto en prácticas como en entornos laborales reales.</p>
+      <br>
+      <p>Soy una persona <strong>con ganas de aprender rápido</strong>, adaptable y comprometido con cada proyecto en el que participo.</p>
+    </div>
+    <div class="about-stats">
+      <div class="stat-card reveal">
+        <div class="stat-num">24</div>
+        <div class="stat-label">Años</div>
+      </div>
+      <div class="stat-card reveal">
+        <div class="stat-num">2+</div>
+        <div class="stat-label">Años en IT</div>
+      </div>
+      <div class="stat-card reveal">
+        <div class="stat-num">2+</div>
+        <div class="stat-label">Proyectos GitHub</div>
+      </div>
+      <div class="stat-card reveal">
+        <div class="stat-num">∞</div>
+        <div class="stat-label">Ganas de aprender</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <p class="section-label" style="justify-content:center; margin-bottom:10px">// contacto</p>
+  <h2 class="section-title" style="margin-bottom:8px">¿Hablamos?</h2>
+  <p style="color:var(--text-mid); font-size:16px; max-width:480px; margin:0 auto">
+    Estoy abierto a nuevas oportunidades laborales y colaboraciones interesantes. ¡No dudes en contactarme!
+  </p>
+  <div class="contact-cards">
+    <a href="https://www.linkedin.com/in/ismael-garc%C3%ADa-camacho-9a0365352/" target="_blank" rel="noopener" class="contact-card">
+      <div class="contact-icon">💼</div>
+      LinkedIn · Ismael García
+    </a>
+    <a href="https://github.com/IsmaelGarcia06" target="_blank" rel="noopener" class="contact-card">
+      <div class="contact-icon">🐙</div>
+      github.com/IsmaelGarcia06
+    </a>
+    <a href="mailto:ismaelgarciacamacho38@gmail.com" target="_blank" rel="noopener" class="contact-card">
+      <div class="contact-icon">✉️</div>
+      ismaelgarciacamacho38@gmail.com
+    </a>
+  </div>
+</section>
+
+<footer>
+  Diseñado y construido por Ismael García Camacho · 2026 · Todos los derechos reservados
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  reveals.forEach(r => observer.observe(r));
+
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const bar = e.target.querySelector('.skill-bar');
+        if (bar) bar.style.width = bar.dataset.w + '%';
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.skill-card').forEach(c => barObserver.observe(c));
+</script>
+</body>
+</html>
